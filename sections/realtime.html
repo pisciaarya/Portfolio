@@ -1,0 +1,32 @@
+
+<section class="realtime" id="realtime">
+  <h2 class="section__title">Real-time Air Quality & Weather - Nepal</h2>
+  <div class="map-container">
+    <div id="realtime-map"></div>
+    <div class="map-controls">
+      <div class="layer-control">
+        <button id="basemap-toggle" class="map-control-btn">
+          <i class='bx bx-layer'></i> Basemaps
+        </button>
+        <div id="basemap-panel" class="basemap-panel">
+          <div class="basemap-option" data-basemap="osm">OpenStreetMap</div>
+          <div class="basemap-option" data-basemap="esri">Esri Imagery</div>
+          <div class="basemap-option" data-basemap="carto">CartoDB Dark</div>
+        </div>
+      </div>
+      <button id="refresh-data" class="map-control-btn">
+        <i class='bx bx-refresh'></i> Refresh Data
+      </button>
+    </div>
+  </div>
+  <div class="map-info">
+    <p class="data-source">Data provided by <a href="https://waqi.info/" target="_blank">World Air Quality Index</a> and <a href="https://openweathermap.org/" target="_blank">OpenWeather</a></p>
+  </div>
+
+  <div class="map-controls">
+  <!-- Keep existing controls but add mobile-specific ones -->
+  <button id="mobile-basemap-toggle" class="map-control-btn">
+    <i class='bx bx-layer'></i>
+  </button>
+</div>
+</section>

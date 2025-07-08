@@ -1,0 +1,106 @@
+<section class="maplab" id="maplab">
+  <h2 class="section__title">Maplab🗺️</h2>
+
+  <div class="map-tools-container">
+    <div class="map-container">
+      <div id="maplab-map"></div>
+
+      <div class="custom-layer-control-wrapper">
+        <button id="layer-toggle" class="map-control-btn">
+          <i class='bx bx-layer'></i> <span>Layers</span>
+        </button>
+
+        <div id="layer-panel" class="layer-panel">
+          <h3>Data Layers</h3>
+          <div class="layer-options">
+            <div class="layer-option active" data-layer="osm">
+              <div class="layer-preview" style="background-image: url('https://tile.openstreetmap.org/5/16/10.png')"></div>
+              <span class="layer-name">OpenStreetMap</span>
+            </div>
+            <div class="layer-option" data-layer="esri">
+                <div class="layer-preview" style="background-image: url('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/5/10/16')"></div>
+                <span class="layer-name">Esri Imagery</span>
+            </div>
+            <div class="layer-option" data-layer="carto">
+                <div class="layer-preview" style="background-color: #f6f3ef;"></div>
+                <span class="layer-name">Carto Light</span>
+            </div>
+            <div class="layer-option" data-layer="dhangadhi">
+              <div class="layer-preview" style="background-color: #ff7800; opacity: 0.6;"></div>
+              <span class="layer-name">Dhangadhi Boundary</span>
+            </div>
+            <div class="layer-option" data-layer="rivers">
+              <div class="layer-preview" style="background-color: #0077be; opacity: 0.6;"></div>
+              <span class="layer-name">Rivers</span>
+            </div>
+            <div class="layer-option" data-layer="roads">
+              <div class="layer-preview" style="background-color: #555; opacity: 0.6;"></div>
+              <span class="layer-name">Roads</span>
+            </div>
+            <div class="layer-option" data-layer="settlements">
+              <div class="layer-preview" style="background-color: #d03; opacity: 0.6;"></div>
+              <span class="layer-name">Settlements</span>
+            </div>
+            <div class="layer-option" data-layer="facilities">
+              <div class="layer-preview" style="background-color: #16a085; opacity: 0.6;"></div>
+              <span class="layer-name">Facilities</span>
+            </div>
+            <div class="layer-option" data-layer="tourism">
+              <div class="layer-preview" style="background-color: #f39c12; opacity: 0.6;"></div>
+              <span class="layer-name">Tourism</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="tool-buttons">
+        <button class="map-tool" id="overlay-analysis">
+          <i class='bx bx-intersect'></i>
+          <span>Overlay Analysis</span>
+        </button>
+        <button class="map-tool" id="measurement-tool">
+          <i class='bx bx-ruler'></i>
+          <span>Measurement Tool</span>
+        </button>
+        <button class="map-tool" id="shortest-path">
+          <i class='bx bx-directions'></i>
+          <span>Shortest Path</span>
+        </button>
+      </div>
+
+      <div class="analysis-controls">
+        <div id="overlay-controls" class="tool-controls">
+          <p>Click on the map to run Overlay Analysis.</p>
+          <label>Buffer Radius (meters):</label>
+          <input type="number" id="buffer-radius" value="500" min="100" max="5000">
+          <button id="run-overlay">Analyze</button>
+        </div>
+
+        <div id="measurement-controls" class="tool-controls">
+          <div class="measurement-mode">
+            <button class="param-button active" data-mode="point">Point</button>
+            <button class="param-button" data-mode="line">Line</button>
+            <button class="param-button" data-mode="polygon">Polygon</button>
+          </div>
+          <div id="measurement-results">
+            <p>Click on the map to start measuring</p>
+          </div>
+          <button id="clear-measurement">Clear Measurements</button>
+        </div>
+
+        <div id="shortest-path-controls" class="tool-controls">
+          <p>Click on the map to set Start and End points.</p>
+          <p>Distance: <span id="distance-value">0 km</span></p>
+          <button id="clear-path">Clear Path</button>
+          <button id="export-path">Export Path</button>
+        </div>
+      </div>
+
+      <div id="result-content" class="analysis-results-display">
+        <p>Results will appear here after analysis.</p>
+      </div>
+    </div>
+  </div>
+</section>

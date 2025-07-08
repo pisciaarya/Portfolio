@@ -1,0 +1,1286 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-07-06T12:04:21Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/254343831",
+        "addr:city": "dhangadhi",
+        "addr:street": "vetenary road",
+        "name": "Hotel Saathi",
+        "opening_hours": "Su-Sa 06:00-22:00",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5836841,
+              28.7038007
+            ],
+            [
+              80.5838739,
+              28.7042901
+            ],
+            [
+              80.5835869,
+              28.7043736
+            ],
+            [
+              80.5835768,
+              28.7042689
+            ],
+            [
+              80.5831961,
+              28.7043505
+            ],
+            [
+              80.5830162,
+              28.7040289
+            ],
+            [
+              80.5833783,
+              28.7038454
+            ],
+            [
+              80.5834642,
+              28.7038149
+            ],
+            [
+              80.5834804,
+              28.7038612
+            ],
+            [
+              80.5836323,
+              28.7038161
+            ],
+            [
+              80.5836841,
+              28.7038007
+            ]
+          ]
+        ]
+      },
+      "id": "way/254343831"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/306997910",
+        "name": "Hotel Jalsa",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5745665,
+              28.7045639
+            ],
+            [
+              80.5752633,
+              28.7045716
+            ],
+            [
+              80.5754166,
+              28.7050637
+            ],
+            [
+              80.5754779,
+              28.7051899
+            ],
+            [
+              80.5752392,
+              28.705261
+            ],
+            [
+              80.5750754,
+              28.7052853
+            ],
+            [
+              80.5746101,
+              28.7053813
+            ],
+            [
+              80.5745665,
+              28.7045639
+            ]
+          ]
+        ]
+      },
+      "id": "way/306997910"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/435488676",
+        "building": "yes",
+        "name": "MAHABIR BHOJNALAYA",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5742437,
+              28.7046999
+            ],
+            [
+              80.5742433,
+              28.7045892
+            ],
+            [
+              80.5743422,
+              28.7045889
+            ],
+            [
+              80.5743426,
+              28.7046996
+            ],
+            [
+              80.5742437,
+              28.7046999
+            ]
+          ]
+        ]
+      },
+      "id": "way/435488676"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/505088267",
+        "addr:city": "Dhangadi Sub Metropolitan City",
+        "addr:place": "chauraha-3",
+        "addr:street": "godawari Road",
+        "building": "yes",
+        "name": "Hotel Gyanu Plaza",
+        "opening_hours": "10:00-16:00",
+        "operator": "private",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5669846,
+              28.7065197
+            ],
+            [
+              80.566958,
+              28.706482
+            ],
+            [
+              80.5671709,
+              28.7063664
+            ],
+            [
+              80.5671976,
+              28.7064041
+            ],
+            [
+              80.5669846,
+              28.7065197
+            ]
+          ]
+        ]
+      },
+      "id": "way/505088267"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/505267925",
+        "building": "yes",
+        "internet_access": "yes",
+        "internet_access:fee": "no",
+        "name": "Suoreme Hotel",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5711032,
+              28.7131524
+            ],
+            [
+              80.5710567,
+              28.7129849
+            ],
+            [
+              80.5711734,
+              28.71296
+            ],
+            [
+              80.5712394,
+              28.7131983
+            ],
+            [
+              80.5711973,
+              28.7132073
+            ],
+            [
+              80.5711777,
+              28.7131365
+            ],
+            [
+              80.5711032,
+              28.7131524
+            ]
+          ]
+        ]
+      },
+      "id": "way/505267925"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/505269328",
+        "addr:city": "Dhangadi Sub Metropolitan City",
+        "addr:place": "Chatakpur-3",
+        "addr:street": "godawari Road",
+        "building": "yes",
+        "name": "Hotel Flora",
+        "opening_hours": "5:00-21:00",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5681944,
+              28.7108201
+            ],
+            [
+              80.5681789,
+              28.7107534
+            ],
+            [
+              80.5685209,
+              28.7106922
+            ],
+            [
+              80.5685364,
+              28.710759
+            ],
+            [
+              80.5681944,
+              28.7108201
+            ]
+          ]
+        ]
+      },
+      "id": "way/505269328"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/525598304",
+        "addr:city": "Dhangadhi sub metropolitan city",
+        "addr:place": "Devariya",
+        "name": "Sapana Hotel",
+        "operator": "Private",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.6210176,
+              28.7052233
+            ],
+            [
+              80.6210612,
+              28.7052169
+            ],
+            [
+              80.621271,
+              28.7052063
+            ],
+            [
+              80.6214068,
+              28.7055927
+            ],
+            [
+              80.621211,
+              28.7056621
+            ],
+            [
+              80.6211326,
+              28.7055039
+            ],
+            [
+              80.6211017,
+              28.7055121
+            ],
+            [
+              80.6209964,
+              28.7053016
+            ],
+            [
+              80.6210176,
+              28.7052233
+            ]
+          ]
+        ]
+      },
+      "id": "way/525598304"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/525814132",
+        "addr:city": "Dhangadi Sub Metropolitan City",
+        "addr:place": "Chatakpur-3",
+        "addr:street": "godawari Road",
+        "name": "Hotel Hot pot",
+        "opening_hours": "5:00-21:00",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5683816,
+              28.7087153
+            ],
+            [
+              80.5681983,
+              28.7087188
+            ],
+            [
+              80.5681957,
+              28.7086111
+            ],
+            [
+              80.568379,
+              28.7086076
+            ],
+            [
+              80.5683816,
+              28.7087153
+            ]
+          ]
+        ]
+      },
+      "id": "way/525814132"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/532174143",
+        "addr:city": "dhangadhi",
+        "addr:street": "hasanpur road",
+        "building": "yes",
+        "building:levels": "2",
+        "contact:phone": "091-525931",
+        "name": "Hotel Devotee",
+        "opening_hours": "Su-Sa 06:00-22:00",
+        "operator": "private",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5864186,
+              28.7078192
+            ],
+            [
+              80.5865877,
+              28.7077238
+            ],
+            [
+              80.5866546,
+              28.7078149
+            ],
+            [
+              80.5867006,
+              28.7077889
+            ],
+            [
+              80.5867619,
+              28.7078724
+            ],
+            [
+              80.5865003,
+              28.7080201
+            ],
+            [
+              80.5864395,
+              28.7079372
+            ],
+            [
+              80.586486,
+              28.707911
+            ],
+            [
+              80.5864186,
+              28.7078192
+            ]
+          ]
+        ]
+      },
+      "id": "way/532174143"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1059988366",
+        "addr:city": "Dhangadi Sub Metropolitan City",
+        "addr:street": "Bhimdatta Panta Highway",
+        "building": "yes",
+        "internet_access": "yes",
+        "internet_access:fee": "customers",
+        "name": "Hotel Holy Palace",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5691381,
+              28.7137319
+            ],
+            [
+              80.5691325,
+              28.7136565
+            ],
+            [
+              80.5691877,
+              28.7136533
+            ],
+            [
+              80.5691888,
+              28.7136674
+            ],
+            [
+              80.5692535,
+              28.7136637
+            ],
+            [
+              80.5692524,
+              28.7136496
+            ],
+            [
+              80.5693017,
+              28.7136468
+            ],
+            [
+              80.5693073,
+              28.7137222
+            ],
+            [
+              80.5691381,
+              28.7137319
+            ]
+          ]
+        ]
+      },
+      "id": "way/1059988366"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1061651540",
+        "name": "Hotel Jumeri",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              80.5711121,
+              28.713244
+            ],
+            [
+              80.5710203,
+              28.7132622
+            ],
+            [
+              80.5709565,
+              28.7130142
+            ],
+            [
+              80.5710483,
+              28.7129961
+            ],
+            [
+              80.5711121,
+              28.713244
+            ]
+          ]
+        ]
+      },
+      "id": "way/1061651540"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2406134868",
+        "name": "Hotel Vidya",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5818351,
+          28.7047694
+        ]
+      },
+      "id": "node/2406134868"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2406135341",
+        "name:en": "Way to Dhangadi Airport",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5614382,
+          28.7560083
+        ]
+      },
+      "id": "node/2406135341"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4099055586",
+        "name": "Hotel Bikas",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5872607,
+          28.7079147
+        ]
+      },
+      "id": "node/4099055586"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4234105892",
+        "addr:street": "Main Road",
+        "internet_access": "wlan",
+        "name": "Sunlight",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5852141,
+          28.7045006
+        ]
+      },
+      "id": "node/4234105892"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4332104797",
+        "name": "Hotel Temple resort",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5743888,
+          28.7076967
+        ]
+      },
+      "id": "node/4332104797"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4628187991",
+        "addr:street": "Bishalnagar road",
+        "internet_access": "wlan",
+        "name:en": "Hotel Shree Jagadamba",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5657361,
+          28.7072917
+        ]
+      },
+      "id": "node/4628187991"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4628187992",
+        "addr:street": "Dhangadhi gau",
+        "name:en": "Kamal restaurant",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6159354,
+          28.6719815
+        ]
+      },
+      "id": "node/4628187992"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4628312789",
+        "addr:street": "Uttar Behedi",
+        "name:en": "Rubus hotel",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5713407,
+          28.7033962
+        ]
+      },
+      "id": "node/4628312789"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4709803090",
+        "name:en": "Mangalasen plaza",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5736609,
+          28.7062308
+        ]
+      },
+      "id": "node/4709803090"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4856589921",
+        "addr:postcode": "00977",
+        "addr:street": "Buddha Chok, Campus Road, Dhangadhi",
+        "email": "1073529@gmail.com",
+        "name:en": "Shiva Raj Joshi’s home",
+        "name:hi": "शिवराज जोशी",
+        "opening_hours": "24/7",
+        "phone": "091525354",
+        "tourism": "hostel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6069593,
+          28.6976566
+        ]
+      },
+      "id": "node/4856589921"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4876455421",
+        "name:en": "Indreni Guest House",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5690095,
+          28.7055989
+        ]
+      },
+      "id": "node/4876455421"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4876455721",
+        "name:en": "purano bhansar",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5599558,
+          28.6939342
+        ]
+      },
+      "id": "node/4876455721"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4876455723",
+        "name:en": "poultry",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5604791,
+          28.7540738
+        ]
+      },
+      "id": "node/4876455723"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4876455821",
+        "name:en": "santoshi tol",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5682629,
+          28.7008898
+        ]
+      },
+      "id": "node/4876455821"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4876455824",
+        "name:en": "api himalayan agro livestock co.pvt.ltd",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6013654,
+          28.7540806
+        ]
+      },
+      "id": "node/4876455824"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4893734622",
+        "name:en": "Nepal army",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5695873,
+          28.7223252
+        ]
+      },
+      "id": "node/4893734622"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4988297127",
+        "name:en": "palpasa cafe",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5865638,
+          28.7060975
+        ]
+      },
+      "id": "node/4988297127"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4997162725",
+        "addr:street": "rampur,urma,kailali",
+        "name:en": "bheda baba mandir",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.7063123,
+          28.7391224
+        ]
+      },
+      "id": "node/4997162725"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4997162726",
+        "name:en": "ganga mata dharmik taal",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.7103209,
+          28.7437632
+        ]
+      },
+      "id": "node/4997162726"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5056411721",
+        "addr:street": "Nagarpalika Road",
+        "internet_access": "wlan",
+        "name": "Dinesh Hotel",
+        "opening_hours": "Su-Sa 06:00-23:00",
+        "phone": "091-520361",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5832844,
+          28.7067159
+        ]
+      },
+      "id": "node/5056411721"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5129861823",
+        "name:en": "gr",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5624446,
+          28.7574803
+        ]
+      },
+      "id": "node/5129861823"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5129861824",
+        "name:en": "oht",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.568993,
+          28.7531984
+        ]
+      },
+      "id": "node/5129861824"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5129861921",
+        "name:en": "boradadi chowk,bk",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5686669,
+          28.7257131
+        ]
+      },
+      "id": "node/5129861921"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5129862022",
+        "name:en": "gr",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5662975,
+          28.7552347
+        ]
+      },
+      "id": "node/5129862022"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5129862023",
+        "name:en": "no road",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5742137,
+          28.7491275
+        ]
+      },
+      "id": "node/5129862023"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5129862421",
+        "name:en": "gr",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5716346,
+          28.7520523
+        ]
+      },
+      "id": "node/5129862421"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5168432221",
+        "name:en": "NLR OFFICE",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5816764,
+          28.7124583
+        ]
+      },
+      "id": "node/5168432221"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5217162521",
+        "addr:street": "Taranagar",
+        "name:en": "Pathak’s Home",
+        "operator": "Bhoj Raj Pathak",
+        "phone": "091524163",
+        "tourism": "apartment"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5818793,
+          28.7139816
+        ]
+      },
+      "id": "node/5217162521"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5308168522",
+        "addr:street": "Buddhachowk, Vidyanagar",
+        "email": "omgdipesh@gmail.com",
+        "internet_access": "wlan",
+        "name:en": "Dipace's house",
+        "operator": "Dipesh",
+        "phone": "9815602346",
+        "tourism": "apartment"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.605171,
+          28.6962567
+        ]
+      },
+      "id": "node/5308168522"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5407828930",
+        "addr:housenumber": "000",
+        "addr:postcode": "00000",
+        "addr:street": "Main Road",
+        "name:en": "Hotel KI",
+        "opening_hours": "24/7",
+        "phone": "091416050",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5674954,
+          28.7089176
+        ]
+      },
+      "id": "node/5407828930"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5681634421",
+        "name:en": "Dhangadi Church",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5990863,
+          28.6761677
+        ]
+      },
+      "id": "node/5681634421"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5681645121",
+        "name:en": "Dhangadi church life word mission",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6018754,
+          28.7003489
+        ]
+      },
+      "id": "node/5681645121"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6869300985",
+        "addr:street": "Santoshi tole",
+        "name:en": "home",
+        "tourism": "camp_site"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5848506,
+          28.7022796
+        ]
+      },
+      "id": "node/6869300985"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6919384185",
+        "name:en": "Mishra",
+        "opening_hours": "Mo-Su 09:00-18:00",
+        "phone": "9835607610",
+        "tourism": "apartment"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5969161,
+          28.702185
+        ]
+      },
+      "id": "node/6919384185"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7153861985",
+        "addr:postcode": "10900",
+        "name:en": "Rabin Home",
+        "tourism": "apartment"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5919432,
+          28.7079686
+        ]
+      },
+      "id": "node/7153861985"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7166351585",
+        "name:en": "flm off",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5845559,
+          28.7096661
+        ]
+      },
+      "id": "node/7166351585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7217973585",
+        "name:en": "AdB",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5920845,
+          28.7051489
+        ]
+      },
+      "id": "node/7217973585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8463925518",
+        "addr:city": "Dhangahdi Submetropolitan City",
+        "addr:place": "Dhangadhi SMPC Ward No 13 Rajpur",
+        "addr:street": "Dhangadhi-Attaraiya Highway",
+        "name": "Marbel Hotel",
+        "status": "inactive",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5671704,
+          28.7402096
+        ]
+      },
+      "id": "node/8463925518"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9563819817",
+        "name:en": "Shuvam Awas Griha",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5894818,
+          28.704655
+        ]
+      },
+      "id": "node/9563819817"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10960090064",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5742442,
+          28.704655
+        ]
+      },
+      "id": "node/10960090064"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11222585438",
+        "internet_access": "wlan",
+        "name:en": "Hotel Crystal",
+        "phone": "9848407896",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5693115,
+          28.7251886
+        ]
+      },
+      "id": "node/11222585438"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11876530669",
+        "tourism": "apartment"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5944558,
+          28.7145335
+        ]
+      },
+      "id": "node/11876530669"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12896082002",
+        "addr:postcode": "10900",
+        "addr:street": "Near to Shivpuri Dham, Uttarbehedi Road, Dhangadhi",
+        "email": "shree.girls.hostel@gmail.com",
+        "internet_access": "wlan",
+        "name:en": "Shree Girls' Hostel",
+        "opening_hours": "24/7",
+        "phone": "9849431141",
+        "tourism": "hostel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5771622,
+          28.714093
+        ]
+      },
+      "id": "node/12896082002"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12959547201",
+        "addr:postcode": "10900",
+        "addr:street": "Uttarbehedi Road, Near Shivpuri Dham",
+        "internet_access": "wlan",
+        "name:en": "Shree Girls' Hostel",
+        "opening_hours": "24/7",
+        "phone": "9849431141",
+        "tourism": "hostel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5771742,
+          28.7141166
+        ]
+      },
+      "id": "node/12959547201"
+    }
+  ]
+}
