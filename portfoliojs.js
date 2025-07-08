@@ -78,6 +78,9 @@ let startPoint = null; // Stores the LatLng for the start point
 let endPoint = null; // Stores the LatLng for the end point
 let routingLayer = null; // Stores the Leaflet layer for the simulated path
 
+// Global variable for Marker Tool
+let currentMarker = null; // Stores the Leaflet marker for the current marker
+
 /**
  * Helper function to clear analysis-related layers and results from the map and UI.
  * @param {L.Map} mapInstance - The Leaflet map instance to clear layers from.
@@ -114,10 +117,26 @@ function clearAnalysisLayers(mapInstance) {
   });
 
   // Reset UI elements
-  document.getElementById('result-content').innerHTML = '<p>Results will appear here after analysis.</p>';
-  document.getElementById('distance-value').textContent = '0 km'; // Reset shortest path distance
+  const resultContent = document.getElementById('result-content');
+  if (resultContent) {
+    resultContent.innerHTML = '<p>Results will appear here after analysis.</p>';
+  }
+  const distanceValue = document.getElementById('distance-value');
+  if (distanceValue) {
+    distanceValue.textContent = '0 km'; // Reset shortest path distance
+  }
   startPoint = null; // Reset shortest path points
   endPoint = null;
+
+  // Clear marker tool specific elements
+  if (currentMarker && mapInstance.hasLayer(currentMarker)) {
+    mapInstance.removeLayer(currentMarker);
+    currentMarker = null;
+  }
+  const markerResults = document.getElementById('marker-results');
+  if (markerResults) {
+    markerResults.innerHTML = '<p>Click on the map to set a marker</p>';
+  }
 }
 
 
@@ -391,7 +410,7 @@ function initMap() {
     });
   });
 
-  // Event listeners for main tool buttons (Overlay, Shortest Path, Road Density)
+  // Event listeners for main tool buttons (Overlay, Marker, Shortest Path)
   document.querySelectorAll('.map-tool').forEach(tool => {
     tool.addEventListener('click', function() {
       // Hide all tool controls panels
@@ -409,14 +428,12 @@ function initMap() {
         controlPanelId = 'overlay-controls';
         maplabMapInstance.on('click', handleMapClickForOverlay);
         isAnalysisTool = true;
-      } else if (this.id === 'measurement-tool') {
-      controlPanelId = 'measurement-controls';
-      maplabMapInstance.off('click'); // Remove previous click handlers
-      maplabMapInstance.on('click', handleMapClickForMeasurement);
-      isAnalysisTool = true;
-      resetMeasurement();
-      initMeasurementTool();
-    }else if (this.id === 'shortest-path') {
+      } else if (this.id === 'marker-tool') { // Changed ID
+        controlPanelId = 'marker-controls'; // Changed ID
+        maplabMapInstance.off('click'); // Remove previous click handlers
+        maplabMapInstance.on('click', handleMapClickForMarker); // Changed handler
+        isAnalysisTool = true;
+      } else if (this.id === 'shortest-path') {
         controlPanelId = 'shortest-path-controls';
         maplabMapInstance.on('click', handleMapClickForShortestPath);
         isAnalysisTool = true;
@@ -442,6 +459,9 @@ function initMap() {
 
   // Event listener for the "Run Overlay Analysis" button
   document.getElementById('run-overlay').addEventListener('click', runOverlayAnalysis);
+
+  // Event listener for the "Clear Marker" button
+  document.getElementById('clear-marker').addEventListener('click', resetMarkerTool);
 
   // Event listener for the "Calculate Road Density" button
   // This is correctly placed inside initMap to ensure the button exists when the listener is attached.
@@ -915,235 +935,35 @@ function exportPath() {
 }
 
 
-// ===== Real-time Map Initialization =====
 /**
- * Initializes the real-time map, fetches AQI and weather data, and displays it.
+ * Handles map clicks for the new Marker tool, placing a marker and displaying its coordinates.
+ * @param {object} e - The Leaflet map click event object.
  */
-function initRealtimeMap() {
-  const mapContainer = document.getElementById('realtime-map');
-  if (!mapContainer) {
-    console.error("Realtime map container not found!");
-    return;
+function handleMapClickForMarker(e) {
+  clearAnalysisLayers(maplabMapInstance); // Clear previous analysis/markers
+  
+  const latlng = e.latlng;
+  currentMarker = L.marker(latlng).addTo(maplabMapInstance)
+    .bindPopup(`<b>Marker Location</b><br>Lat: ${latlng.lat.toFixed(6)}<br>Lng: ${latlng.lng.toFixed(6)}`)
+    .openPopup();
+
+  const markerResults = document.getElementById('marker-results');
+  if (markerResults) {
+    markerResults.innerHTML = `<p><strong>Marker Coordinates</strong></p><p>Lat: ${latlng.lat.toFixed(6)}</p><p>Lng: ${latlng.lng.toFixed(6)}</p>`;
   }
-
-  // Clear any existing map
-  if (window.realtimeMap) {
-    window.realtimeMap.remove();
-  }
-
-  // Create map instance, centered on Nepal
-  // Approximate bounds for Nepal: SW: 26.347, 80.058; NE: 30.448, 88.201
-  window.realtimeMap = L.map('realtime-map').fitBounds([
-    [26.347, 80.058],
-    [30.448, 88.201]
-  ]);
-  const map = window.realtimeMap; // Local reference to the real-time map instance
-
-  // Define base layers
-  const baseLayers = {
-    "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }),
-    "Esri Imagery": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19,
-      attribution: 'Tiles &copy; Esri'
-    }),
-    "CartoDB Dark": L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-      attribution: '&copy; CartoDB & OpenStreetMap'
-    })
-  };
-
-  // Add default layer
-  baseLayers["OpenStreetMap"].addTo(map);
-
-  // Custom AQI icon
-  const aqiIcon = L.icon({
-    iconUrl: 'Images/Location.png', // Ensure this image path is correct
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-    popupAnchor: [0, -35]
-  });
-
-  /**
-   * Determines AQI category and corresponding CSS class based on AQI value.
-   * @param {number} aqi - The Air Quality Index value.
-   * @returns {object} An object with 'level' (description) and 'class' (CSS class).
-   */
-  function getAqiCategory(aqi) {
-    if (aqi <= 50) return {
-      level: "Good",
-      class: "aqi-good"
-    };
-    if (aqi <= 100) return {
-      level: "Moderate",
-      class: "aqi-moderate"
-    };
-    if (aqi <= 150) return {
-      level: "Unhealthy for Sensitive Groups",
-      class: "aqi-unhealthy-sensitive"
-    };
-    if (aqi <= 200) return {
-      level: "Unhealthy",
-      class: "aqi-unhealthy"
-    };
-    if (aqi <= 300) return {
-      level: "Very Unhealthy",
-      class: "aqi-very-unhealthy"
-    };
-    return {
-      level: "Hazardous",
-      class: "aqi-hazardous"
-    };
-  }
-
-  /**
-   * Fetches AQI and weather data and displays it on the real-time map.
-   */
-  function fetchAndDisplayData() {
-    // Show loading indicator
-    const loadingIndicator = L.divIcon({
-      className: 'loading-indicator',
-      html: '<div class="spinner"></div>', // Ensure .spinner CSS is defined
-      iconSize: [40, 40]
-    });
-
-    // Get map center for loading marker
-    const mapCenter = map.getCenter();
-    const loadingMarker = L.marker(mapCenter, {
-      icon: loadingIndicator,
-      zIndexOffset: 1000
-    }).addTo(map);
-
-    // Clear existing markers (except the loading marker)
-    map.eachLayer(layer => {
-      if (layer instanceof L.Marker && layer !== loadingMarker) {
-        map.removeLayer(layer);
-      }
-    });
-
-    // Fetch AQI stations for Nepal's bounding box
-    // Nepal bounds: SW: 26.347, 80.058; NE: 30.448, 88.201
-    const nepalBounds = "27.347144,80.058815,30.446945,88.201530";
-    // Using a placeholder token for WAQI API. Replace with a valid one if needed.
-    // NOTE: This API key is publicly exposed. For production, consider a backend proxy.
-    fetch(`https://api.waqi.info/map/bounds/?latlng=${nepalBounds}&token=2442d98dd891dbb9d5e21bfdea20fd18e4bdfeae`)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`WAQI API HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then(data => {
-        map.removeLayer(loadingMarker); // Remove loading indicator
-
-        if (!data.data || data.data.length === 0) {
-          L.marker(mapCenter).addTo(map)
-            .bindPopup(`<b>No AQI Stations Found for Nepal</b><br>Try zooming out or check back later`)
-            .openPopup();
-          return;
-        }
-
-        data.data.forEach(station => {
-          const lat = station.lat;
-          const lon = station.lon;
-          const aqi = station.aqi;
-          const uid = station.uid;
-          const stationName = station.station ? station.station.name : `Station ${uid}`; // Use station name if available
-          const aqiInfo = getAqiCategory(aqi);
-
-          // Fetch weather data for each station
-          // Using a placeholder token for OpenWeatherMap API. Replace with a valid one if needed.
-          // NOTE: This API key is publicly exposed. For production, consider a backend proxy.
-          fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7f09b2a738a1d65908e2ca4e002d9259&units=metric`)
-            .then(res => {
-              if (!res.ok) {
-                throw new Error(`OpenWeatherMap API HTTP error! status: ${res.status}`);
-              }
-              return res.json();
-            })
-            .then(weather => {
-              const temp = weather.main.temp;
-              const humidity = weather.main.humidity;
-              const pressure = weather.main.pressure;
-              const condition = weather.weather[0].description;
-              const windSpeed = weather.wind.speed;
-              const iconCode = weather.weather[0].icon;
-              const weatherIcon = `https://openweathermap.org/img/wn/${iconCode}.png`;
-
-              // Create marker with detailed popup
-              L.marker([lat, lon], {
-                icon: aqiIcon
-              }).addTo(map).bindPopup(`
-                <div class="aqi-popup">
-                  <div class="aqi-header">
-                    <b>${stationName}</b><br>
-                    <b>Air Quality:</b>
-                    <span class="${aqiInfo.class}">${aqi} (${aqiInfo.level})</span>
-                  </div>
-                  <div class="weather-info">
-                    <img src="${weatherIcon}" alt="${condition}">
-                    <div>
-                      <b>Condition:</b> ${condition}<br>
-                      <b>Temp:</b> ${temp} °C<br>
-                      <b>Humidity:</b> ${humidity}%<br>
-                      <b>Pressure:</b> ${pressure} hPa<br>
-                      <b>Wind:</b> ${windSpeed} m/s
-                    </div>
-                  </div>
-                </div>
-              `);
-            })
-            .catch(err => console.error("Weather fetch error for station:", stationName, err));
-        });
-      })
-      .catch(err => {
-        map.removeLayer(loadingMarker);
-        L.marker(mapCenter).addTo(map)
-          .bindPopup(`<b>Data Load Error</b><br>${err.message || 'Please try again later'}`)
-          .openPopup();
-        console.error("AQI fetch error:", err);
-      });
-  }
-
-  // Initial data fetch
-  fetchAndDisplayData();
-
-  // Basemap controls for the real-time map
-  const basemapToggle = document.getElementById('basemap-toggle');
-  const basemapPanel = document.getElementById('basemap-panel');
-
-  if (basemapToggle && basemapPanel) {
-    basemapToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      basemapPanel.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.basemap-option').forEach(option => {
-      option.addEventListener('click', function() {
-        const basemap = this.dataset.basemap;
-        Object.values(baseLayers).forEach(layer => map.removeLayer(layer));
-
-        if (basemap === 'esri') baseLayers["Esri Imagery"].addTo(map);
-        else if (basemap === 'carto') baseLayers["CartoDB Dark"].addTo(map);
-        else baseLayers["OpenStreetMap"].addTo(map);
-
-        basemapPanel.classList.remove('active');
-      });
-    });
-  }
-
-  // Refresh data button for AQI
-  document.getElementById('refresh-data')?.addEventListener('click', fetchAndDisplayData);
-
-  // Close basemap panel if clicked outside
-  document.addEventListener('click', function(e) {
-    if (basemapPanel && !basemapPanel.contains(e.target) && e.target !== basemapToggle) {
-      basemapPanel.classList.remove('active');
-    }
-  });
 }
+
+/**
+ * Resets the marker tool, clearing the current marker.
+ */
+function resetMarkerTool() {
+  if (currentMarker && maplabMapInstance.hasLayer(currentMarker)) {
+    maplabMapInstance.removeLayer(currentMarker);
+    currentMarker = null;
+  }
+  document.getElementById('marker-results').innerHTML = '<p>Click on the map to set a marker</p>';
+}
+
 
 // ===== Navigation Functions =====
 function toggleMenu() {
@@ -1251,6 +1071,9 @@ function animateInvolvements() {
   });
 }
 
+
+
+
 // ===== Contact Form Submission =====
 function initContactForm() {
   const contactForm = document.getElementById('contactForm');
@@ -1317,234 +1140,3 @@ function initContactForm() {
 
 // Call initContactForm when the window loads, assuming the contact form is part of the initial HTML
 window.addEventListener('DOMContentLoaded', initContactForm);
-
-// Shortest Path Routing
-// Re-using global variables: startPoint, endPoint, routingLayer
-
-/**
- * Handles map clicks for shortest path calculation, setting start and end points.
- * @param {L.LeafletMouseEvent} e - The Leaflet map click event object.
- */
-function handleMapClickForShortestPath(e) {
-  const currentMap = this; // 'this' refers to the map instance when used with map.on('click')
-  if (!startPoint) {
-    startPoint = e.latlng;
-    L.marker(startPoint).addTo(currentMap).bindPopup('Start Point').openPopup();
-    document.getElementById('result-content').innerHTML = '<p>Start point set. Now click for the End Point.</p>';
-  } else if (!endPoint) {
-    endPoint = e.latlng;
-    L.marker(endPoint).addTo(currentMap).bindPopup('End Point').openPopup();
-    document.getElementById('result-content').innerHTML = '<p>End point set. Calculating shortest path...</p>';
-    calculateShortestPath(currentMap);
-  }
-}
-
-/**
- * Calculates and displays a simulated shortest path between two points.
- * NOTE: This is a simulated path, not a true routing algorithm.
- * @param {L.Map} mapInstance - The Leaflet map instance to draw the path on.
- */
-function calculateShortestPath(mapInstance) {
-  if (typeof turf === 'undefined') {
-    document.getElementById('distance-value').textContent = 'Error';
-    document.getElementById('result-content').innerHTML = '<p class="error-message">Error: Turf.js library not loaded. Cannot calculate shortest path.</p>';
-    console.error("Turf.js is not loaded. Cannot calculate shortest path.");
-    return;
-  }
-
-  if (!startPoint || !endPoint) {
-    console.warn("Cannot calculate shortest path: Start or End point missing.");
-    return;
-  }
-
-  // Calculate straight-line distance and add 50% for a simulated "road" distance
-  const distance = (turf.distance(
-    [startPoint.lng, startPoint.lat],
-    [endPoint.lng, endPoint.lat], {
-      units: 'kilometers'
-    }
-  ) * 1.5).toFixed(2);
-
-  document.getElementById('distance-value').textContent = `${distance} km`;
-
-  // Draw simulated path
-  if (routingLayer) mapInstance.removeLayer(routingLayer);
-
-  const path = turf.lineString([
-    [startPoint.lng, startPoint.lat],
-    [startPoint.lng + (endPoint.lng - startPoint.lng) / 3, startPoint.lat + (endPoint.lat - startPoint.lat) * 2 / 3], // Simulate a bend
-    [endPoint.lng, endPoint.lat]
-  ]);
-
-  routingLayer = L.geoJSON(path, {
-    style: {
-      color: '#e74c3c', // Red color for the path
-      weight: 4
-    }
-  }).addTo(mapInstance);
-
-  document.getElementById('result-content').innerHTML = `<p>Shortest path calculated: ${distance} km.</p>`;
-}
-
-// Event listeners for shortest path control buttons
-document.getElementById('clear-path').addEventListener('click', () => clearAnalysisLayers(maplabMapInstance));
-document.getElementById('export-path').addEventListener('click', exportPath);
-
-/**
- * Placeholder function for exporting the calculated path.
- */
-function exportPath() {
-  console.log("Export Path functionality to be implemented.");
-  const resultContent = document.getElementById('result-content');
-  resultContent.innerHTML = '<p class="info-message">Path export functionality is not yet implemented.</p>';
-}
-
-// Measurement Tool Variables
-let measurementMode = 'point';
-let measurementPoints = [];
-let measurementLayer = null;
-let measurementMarkers = []; // Track all measurement markers
-
-// Initialize Measurement Tool
-function initMeasurementTool() {
-  // Clear previous measurements
-  resetMeasurement();
-  
-  // Set up mode buttons
-  document.querySelectorAll('.measurement-mode .param-button').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.measurement-mode .param-button').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      measurementMode = this.dataset.mode;
-      resetMeasurement();
-      updateMeasurementInstructions();
-    });
-  });
-
-  // Clear measurements button
-  document.getElementById('clear-measurement').addEventListener('click', resetMeasurement);
-  
-  // Update instructions
-  updateMeasurementInstructions();
-}
-
-function updateMeasurementInstructions() {
-  const instructions = {
-    point: "Click anywhere to place a point and view coordinates",
-    line: "Click multiple points to create a line and measure distance",
-    polygon: "Click multiple points to create a polygon and measure area"
-  };
-  document.getElementById('measurement-results').innerHTML = `<p>${instructions[measurementMode]}</p>`;
-}
-
-function handleMapClickForMeasurement(e) {
-  const point = e.latlng;
-  measurementPoints.push(point);
-
-  // Create marker
-  const marker = L.circleMarker(point, {
-    radius: 6,
-    color: 'white',
-    fillColor: '#e74c3c',
-    fillOpacity: 1,
-    className: 'measurement-marker'
-  }).addTo(maplabMapInstance);
-  
-  measurementMarkers.push(marker); // Store reference to marker
-
-  // Show coordinates in popup
-  marker.bindPopup(`
-    <div class="marker-popup">
-      <strong>Coordinates:</strong><br>
-      Lat: ${point.lat.toFixed(6)}<br>
-      Lng: ${point.lng.toFixed(6)}
-    </div>
-  `).openPopup();
-
-  // Draw lines or polygons based on mode
-  if (measurementMode === 'line' && measurementPoints.length > 1) {
-    drawMeasurementLine();
-  } else if (measurementMode === 'polygon' && measurementPoints.length > 2) {
-    drawMeasurementPolygon();
-  }
-
-  updateMeasurementResults();
-}
-
-function drawMeasurementLine() {
-  if (measurementLayer) maplabMapInstance.removeLayer(measurementLayer);
-  
-  const line = turf.lineString(measurementPoints.map(p => [p.lng, p.lat]));
-  measurementLayer = L.geoJSON(line, {
-    style: {
-      color: '#e74c3c',
-      weight: 3,
-      dashArray: '5, 5'
-    }
-  }).addTo(maplabMapInstance);
-
-  // Calculate total length
-  const length = turf.length(line, { units: 'kilometers' });
-  document.getElementById('measurement-results').innerHTML = `
-    <p><strong>Line Measurement</strong></p>
-    <p>Distance: ${length.toFixed(2)} km</p>
-    <p>Points: ${measurementPoints.length}</p>
-  `;
-}
-
-function drawMeasurementPolygon() {
-  if (measurementLayer) maplabMapInstance.removeLayer(measurementLayer);
-  
-  const polygon = turf.polygon([[
-    ...measurementPoints.map(p => [p.lng, p.lat]),
-    [measurementPoints[0].lng, measurementPoints[0].lat] // Close the polygon
-  ]]);
-  
-  measurementLayer = L.geoJSON(polygon, {
-    style: {
-      color: '#e74c3c',
-      weight: 2,
-      fillColor: '#e74c3c',
-      fillOpacity: 0.2
-    }
-  }).addTo(maplabMapInstance);
-
-  // Calculate area
-  const area = turf.area(polygon) / 1000000; // Convert to sq km
-  document.getElementById('measurement-results').innerHTML = `
-    <p><strong>Polygon Measurement</strong></p>
-    <p>Area: ${area.toFixed(2)} km²</p>
-    <p>Points: ${measurementPoints.length}</p>
-  `;
-}
-
-function updateMeasurementResults() {
-  if (measurementMode === 'point') {
-    const lastPoint = measurementPoints[measurementPoints.length - 1];
-    document.getElementById('measurement-results').innerHTML = `
-      <p><strong>Point Coordinates</strong></p>
-      <p>Lat: ${lastPoint.lat.toFixed(6)}</p>
-      <p>Lng: ${lastPoint.lng.toFixed(6)}</p>
-    `;
-  }
-}
-
-function resetMeasurement() {
-  measurementPoints = [];
-  
-  // Remove measurement layer
-  if (measurementLayer) {
-    maplabMapInstance.removeLayer(measurementLayer);
-    measurementLayer = null;
-  }
-  
-  // Remove all measurement markers
-  measurementMarkers.forEach(marker => {
-    if (maplabMapInstance.hasLayer(marker)) {
-      maplabMapInstance.removeLayer(marker);
-    }
-  });
-  measurementMarkers = [];
-  
-  updateMeasurementInstructions();
-}

@@ -60,9 +60,9 @@
           <i class='bx bx-intersect'></i>
           <span>Overlay Analysis</span>
         </button>
-        <button class="map-tool" id="measurement-tool">
-          <i class='bx bx-ruler'></i>
-          <span>Measurement Tool</span>
+        <button class="map-tool" id="marker-tool">
+          <i class='bx bx-map-pin'></i>
+          <span>Marker</span>
         </button>
         <button class="map-tool" id="shortest-path">
           <i class='bx bx-directions'></i>
@@ -78,16 +78,12 @@
           <button id="run-overlay">Analyze</button>
         </div>
 
-        <div id="measurement-controls" class="tool-controls">
-          <div class="measurement-mode">
-            <button class="param-button active" data-mode="point">Point</button>
-            <button class="param-button" data-mode="line">Line</button>
-            <button class="param-button" data-mode="polygon">Polygon</button>
+        <div id="marker-controls" class="tool-controls">
+          <p>Click on the map to add a marker.</p>
+          <div id="marker-results">
+            <p>Click on the map to set a marker</p>
           </div>
-          <div id="measurement-results">
-            <p>Click on the map to start measuring</p>
-          </div>
-          <button id="clear-measurement">Clear Measurements</button>
+          <button id="clear-marker">Clear Marker</button>
         </div>
 
         <div id="shortest-path-controls" class="tool-controls">
