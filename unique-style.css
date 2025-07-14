@@ -10,6 +10,7 @@
   html{
     overflow-x: hidden;
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 * {
@@ -29,6 +30,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    height: 100%;
 }
 
 section {
@@ -50,7 +52,7 @@ header {
   left: 0; /* Ensure it starts from the left edge */
   right: 0; /* Ensure it stretches to the right edge */
   width: 100%; /* Full width */
-  z-index: 999;
+  z-index: 1000;
   box-sizing: border-box; /* Includes padding in width calculation */
 }
 
@@ -70,18 +72,7 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--accent-color);
-}
-
-
-
-
-
-
-
-
-
-
+  color: var(--accent-color)
 
 
 
@@ -101,6 +92,9 @@ nav a:hover {
   background-color: var(--bg-color);
   position: relative;
   overflow: hidden;
+  padding-top: 1000px;
+  min-height: calc(110vh - 80px);
+}
 }
 
 .hero-section {
