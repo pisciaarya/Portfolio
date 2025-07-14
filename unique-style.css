@@ -40,6 +40,11 @@ section {
 }
 
 
+main#home {
+  flex: 1; /* This makes the home section fill remaining space */
+  width: 100%;
+}
+
 header {
   background-color: white;
   padding: 0.5rem 5%;
@@ -57,6 +62,10 @@ header {
 }
 
 
+.home{
+   padding-top: 1000px; /* Adjust this to match your header height */
+  min-height: calc(110vh - 80px); /* Full viewport minus header */
+}
 
 .logo {
   font-size: 1.8rem;
@@ -72,7 +81,18 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--accent-color)
+  color: var(--accent-color);
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -92,9 +112,6 @@ nav a:hover {
   background-color: var(--bg-color);
   position: relative;
   overflow: hidden;
-  padding-top: 1000px;
-  min-height: calc(110vh - 80px);
-}
 }
 
 .hero-section {
